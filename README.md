@@ -18,7 +18,7 @@
 * Make sure the app has the required permission on start, as there is no runtime-check yet! (Camera)
 
 ### Test images ###
-<img src="/testimages/circles.jpg" alt="" width="600px"/>
+<img src="/testimages/circles.jpg" alt="" width="400px"/>
 
 <img src="/testimages/simpleshapes.png" alt="" width="600px"/>
 
