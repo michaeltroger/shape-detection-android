@@ -59,7 +59,7 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
     /**
      * detect only red objects
      */
-    private static final boolean DETECT_RED_OBJECTS_ONLY = true;
+    private static final boolean DETECT_RED_OBJECTS_ONLY = false;
     /**
      * the lower red HSV range (lower limit)
      */
