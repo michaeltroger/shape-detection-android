@@ -178,7 +178,6 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
         Log.i(TAG, "Instantiated new " + this.getClass());
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         Log.i(TAG, "called onCreate");
@@ -200,7 +199,6 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
 
         mi = new ActivityManager.MemoryInfo();
         activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-
     }
 
 
@@ -214,9 +212,7 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
 
         if(toast != null)
             toast.cancel();
-
     }
-
 
     @Override
     public void onResume()
@@ -232,7 +228,6 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
         }
     }
 
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -240,14 +235,9 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
             mOpenCvCameraView.disableView();
     }
 
-    public void onCameraViewStarted(int width, int height) {
-    }
+    public void onCameraViewStarted(int width, int height) {}
 
-
-    public void onCameraViewStopped() {
-    }
-
-
+    public void onCameraViewStopped() {}
 
     public Mat onCameraFrame(CvCameraViewFrame inputFrame) {
         if (LOG_MEM_USAGE) {
@@ -460,7 +450,7 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
                 new Scalar(255,255,255),
                 -1
                 );
-*/
+        */
 
         Imgproc.putText(im, label, pt, fontface, scale, RGB_RED, thickness);
 
@@ -484,6 +474,4 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
             }
         });
     }
-
-
 }
