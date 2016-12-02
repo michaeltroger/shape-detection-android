@@ -27,3 +27,4 @@
 
 ### Credits ###
 * The shape detection is based on Nash's shape detection https://github.com/bsdnoobz/opencv-code/blob/master/shape-detect.cpp His version is based on OpenCV 2 for the PC and usable for normal images.
+* The red color detection is based on Sol's https://solarianprogrammer.com/2015/05/08/detect-red-circles-image-using-opencv/
