@@ -20,7 +20,7 @@
 ### Test images ###
 <img src="/testimages/circles.jpg" alt="" width="200px"/>
 
-<img src="/testimages/shapedetection.png" alt="" width="200px"/>
+<img src="/testimages/simpleshapes.png" alt="" width="200px"/>
 
 ### Who do I talk to? ###
 * Repo owner and developer: android@michaeltroger.com
