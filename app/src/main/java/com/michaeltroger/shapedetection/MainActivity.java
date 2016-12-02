@@ -28,10 +28,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
-import com.michaeltroger.shapedetection.tools.ImgprocDatabase;
 import com.michaeltroger.shapedetection.views.OverlayView;
 
 /**
@@ -54,14 +52,6 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
      * responsible for displaying images on top of the camera picture
      */
     private OverlayView overlayView;
-    /**
-     * holds the database to get the command connected
-     */
-    private HashMap<String, String> dataBase;
-    /**
-     * the last used command (for changing the overlay)
-     */
-    private String command;
     /**
      * whether or not to log the memory usage per frame
      */
@@ -194,9 +184,6 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
         Log.i(TAG, "called onCreate");
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
-        ImgprocDatabase barDB = new ImgprocDatabase();
-        dataBase = barDB.getDataBase();
 
         setContentView(R.layout.activity_my);
         // get the OverlayView responsible for displaying images on top of the camera
@@ -456,7 +443,7 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
         int fontface = Core.FONT_HERSHEY_SIMPLEX;
         double scale = 3;//0.4;
         int thickness = 3;//1;
-       int[] baseline = new int[1];
+        int[] baseline = new int[1];
 
         Size text = Imgproc.getTextSize(label, fontface, scale, thickness, baseline);
         Rect r = Imgproc.boundingRect(contour);
@@ -487,8 +474,7 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
     private void doSomethingWithContent(String content) {
         Log.d(TAG, "content: " + content); // for debugging in console
 
-        command = dataBase.get(content);                     // get the command corresponding to barcode
-        //overlayView.changeCanvas(command);                          // send the command to the OverlayView
+        final String command = content;
 
         Handler refresh = new Handler(Looper.getMainLooper());
         refresh.post(new Runnable() {
