@@ -13,14 +13,14 @@
 * Android SDK
 * Dependencies: OpenCV 3.0.0 library (included)
 * Images location: res/drawable | Sounds location: res/raw
-* Mode (label/image): Flag in MainActivity
-* Mode (all colors / red only): Flag in MainActivity
+* Mode (label/image): Flag in MainActivity (default labels)
+* Mode (all colors / red only): Flag in MainActivity (default all colors)
 * Make sure the app has the required permission on start, as there is no runtime-check yet! (Camera)
 
 ### Test images ###
-<img src="/testimages/circles.jpg" alt="" width="200px"/>
+<img src="/testimages/circles.jpg" alt="" width="400px"/>
 
-<img src="/testimages/shapedetection.png" alt="" width="200px"/>
+<img src="/testimages/simpleshapes.png" alt="" width="600px"/>
 
 ### Who do I talk to? ###
 * Repo owner and developer: android@michaeltroger.com
