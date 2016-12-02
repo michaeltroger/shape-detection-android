@@ -12,7 +12,7 @@
         opencv:show_fps="false"
         opencv:camera_id="any" />
 
-    <be.pxl.troger.ar.views.OverlayView
+    <com.michaeltroger.shapedetection.views.OverlayView
         android:id="@+id/overlay_view"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"/>
