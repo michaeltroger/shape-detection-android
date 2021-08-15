@@ -11,11 +11,12 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
-import com.michaeltroger.shapedetection.views.OverlayView
 
 /**
  * The overlay view is responsible for displaying
  * information on top of the camera
+ * @param mContext the context
+ * @param attrs the attributes
  * @author Michael Troger
  */
 class OverlayView(private val mContext: Context, attrs: AttributeSet?) : View(mContext, attrs) {
@@ -116,13 +117,7 @@ class OverlayView(private val mContext: Context, attrs: AttributeSet?) : View(mC
         private val TAG = OverlayView::class.java.name
     }
 
-    /**
-     * creates an instance of the OverlayView
-     * @param context the context
-     * @param attrs the attributes
-     */
     init {
-
         // preload sounds and images
         loadSounds()
         loadImages()

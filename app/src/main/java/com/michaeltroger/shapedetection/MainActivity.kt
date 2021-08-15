@@ -20,6 +20,7 @@ import android.util.Log
 import android.view.View
 import org.opencv.core.*
 import java.util.*
+import kotlin.math.abs
 
 /**
  * the main activity - entry to the application
@@ -158,8 +159,13 @@ class MainActivity : Activity(), CvCameraViewListener2 {
         if (mOpenCvCameraView != null) mOpenCvCameraView!!.disableView()
     }
 
-    override fun onCameraViewStarted(width: Int, height: Int) {}
-    override fun onCameraViewStopped() {}
+    override fun onCameraViewStarted(width: Int, height: Int) {
+        //nothing to do
+    }
+    override fun onCameraViewStopped() {
+        //nothing to do
+    }
+
     override fun onCameraFrame(inputFrame: CvCameraViewFrame): Mat {
         if (LOG_MEM_USAGE) {
             activityManager!!.getMemoryInfo(mi)
@@ -170,7 +176,7 @@ class MainActivity : Activity(), CvCameraViewListener2 {
         }
 
         // get the camera frame as gray scale image
-        var gray: Mat = if (DETECT_RED_OBJECTS_ONLY) {
+        val gray: Mat = if (DETECT_RED_OBJECTS_ONLY) {
             inputFrame.rgba()
         } else {
             inputFrame.gray()
@@ -230,7 +236,7 @@ class MainActivity : Activity(), CvCameraViewListener2 {
             Log.d(TAG, "vertices:$numberVertices")
 
             // ignore to small areas
-            if (Math.abs(contourArea) < 100 // || !Imgproc.isContourConvex(
+            if (abs(contourArea) < 100 // || !Imgproc.isContourConvex(
             ) {
                 continue
             }
@@ -245,7 +251,7 @@ class MainActivity : Activity(), CvCameraViewListener2 {
             }
 
             // rectangle, pentagon and hexagon detection
-            if (numberVertices >= 4 && numberVertices <= 6) {
+            if (numberVertices in 4..6) {
                 val cos: MutableList<Double> = ArrayList()
                 for (j in 2 until numberVertices + 1) {
                     cos.add(
@@ -279,10 +285,10 @@ class MainActivity : Activity(), CvCameraViewListener2 {
             } else {
                 val r = Imgproc.boundingRect(cnt)
                 val radius = r.width / 2
-                if (Math.abs(
+                if (abs(
                                 1 - r.width / r.height
                         ) <= 0.2 &&
-                        Math.abs(
+                        abs(
                                 1 - contourArea / (Math.PI * radius * radius)
                         ) <= 0.2) {
                     if (!DISPLAY_IMAGES) {
