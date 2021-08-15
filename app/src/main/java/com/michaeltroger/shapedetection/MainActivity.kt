@@ -1,11 +1,12 @@
 package com.michaeltroger.shapedetection
 
-import android.app.Activity
+import android.Manifest
 import org.opencv.android.CameraBridgeViewBase.CvCameraViewListener2
 import org.opencv.android.CameraBridgeViewBase
 import android.widget.Toast
 import com.michaeltroger.shapedetection.views.OverlayView
 import android.app.ActivityManager
+import android.content.pm.PackageManager
 import org.opencv.android.BaseLoaderCallback
 import org.opencv.android.LoaderCallbackInterface
 import android.os.Bundle
@@ -18,6 +19,9 @@ import org.opencv.imgproc.Imgproc
 import android.os.Looper
 import android.util.Log
 import android.view.View
+import androidx.activity.ComponentActivity
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import org.opencv.core.*
 import java.util.*
 import kotlin.math.abs
@@ -25,7 +29,7 @@ import kotlin.math.abs
 /**
  * the main activity - entry to the application
  */
-class MainActivity : Activity(), CvCameraViewListener2 {
+class MainActivity : ComponentActivity(), CvCameraViewListener2 {
     /**
      * the camera view
      */
@@ -119,15 +123,39 @@ class MainActivity : Activity(), CvCameraViewListener2 {
         }
     }
 
+    private val requestPermissionLauncher =
+            registerForActivityResult(ActivityResultContracts.RequestPermission()
+            ) { isGranted: Boolean ->
+                if (isGranted) {
+                    onPermissionGranted()
+                } else {
+                    checkPermissonAndInitialize()
+                }
+            }
+
+    private fun checkPermissonAndInitialize() {
+        if (ContextCompat.checkSelfPermission(baseContext, Manifest.permission.CAMERA)
+                == PackageManager.PERMISSION_GRANTED) {
+            onPermissionGranted()
+        } else {
+            requestPermissionLauncher.launch(Manifest.permission.CAMERA)
+        }
+    }
+
     public override fun onCreate(savedInstanceState: Bundle?) {
         Log.i(TAG, "called onCreate")
         super.onCreate(savedInstanceState)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         setContentView(R.layout.activity_my)
+
         // get the OverlayView responsible for displaying images on top of the camera
         overlayView = findViewById<View>(R.id.overlay_view) as OverlayView
         mOpenCvCameraView = findViewById<View>(R.id.java_camera_view) as CameraBridgeViewBase
-        // Michael Troger
+
+        checkPermissonAndInitialize()
+    }
+
+    private fun onPermissionGranted() {
         if (FIXED_FRAME_SIZE) {
             mOpenCvCameraView!!.setMaxFrameSize(FRAME_SIZE_WIDTH, FRAME_SIZE_HEIGHT)
         }
@@ -145,6 +173,7 @@ class MainActivity : Activity(), CvCameraViewListener2 {
 
     public override fun onResume() {
         super.onResume()
+
         if (!OpenCVLoader.initDebug()) {
             Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for initialization")
             OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, this, mLoaderCallback)
