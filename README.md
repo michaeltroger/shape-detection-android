@@ -12,7 +12,7 @@ So don't expect a perfect code please. In 2021 I updated the project to build wi
 
 * IDE: Android Studio (tested with 2020.3.1)
 * Android SDK
-* Dependencies: OpenCV 3.0.0 library (included)
+* Dependencies: OpenCV 3 library (included) [License](/opencv-3-4-15/LICENSE)
 * Images location: res/drawable | Sounds location: res/raw
 * Mode (label/image): Flag in MainActivity (default labels)
 * Mode (all colors / red only): Flag in MainActivity (default all colors)
