@@ -6,4 +6,4 @@ dependencyResolutionManagement {
     }
 }
 include ':app'
-include ':openCVLibrary300'
+include ':opencv-3-4-15'
