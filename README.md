@@ -9,6 +9,7 @@ So don't expect a perfect code please. In 2021 I updated the project to build wi
 ### What is this repository for? ###
 
 * Uses the camera image to recognize triangles, rectangles and circles. It can also be configured to only detect a certain color (red). If a specific shape is detected the information can be shown on top of each shape as a label describing it (multiple shapes at the same time) or as an image respresenting the shape on top of the camera (only one shape is detected). Additionally also a sound depending on the detected shape can be played.
+* More computer vision projects at https://michaeltroger.com/computervision/
 
 ### How do I get set up? ###
 
