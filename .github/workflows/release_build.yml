@@ -25,7 +25,7 @@ jobs:
       run: chmod +x gradlew
 
     - name: Build APK with Gradle
-      run: ./gradlew assembleRelease
+      run: ./gradlew assembleDebug
       
     - name: extract version code and version name
       run: |
@@ -38,6 +38,6 @@ jobs:
         tag_name: ${{ env.VERSION_CODE }}
         name: ${{ env.VERSION_NAME }}
         body: ${{ github.event.inputs.changelog }}
-        files: app/build/outputs/apk/release/app-release.apk
+        files: app/build/outputs/apk/debug/app-debug.apk
 
 
