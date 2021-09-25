@@ -38,6 +38,14 @@ jobs:
         tag_name: ${{ env.VERSION_CODE }}
         name: ${{ env.VERSION_NAME }}
         body: ${{ github.event.inputs.changelog }}
-        files: app/build/outputs/apk/debug/app-debug.apk
+        files: |
+          app/build/outputs/apk/debug/app-arm64-v8a-debug.apk
+          app/build/outputs/apk/debug/app-armeabi-debug.apk
+          app/build/outputs/apk/debug/app-armeabi-v7a-debug.apk
+          app/build/outputs/apk/debug/app-mips64-debug.apk
+          app/build/outputs/apk/debug/app-mips-debug.apk
+          app/build/outputs/apk/debug/app-universal-debug.apk
+          app/build/outputs/apk/debug/app-x86_64-debug.apk
+          app/build/outputs/apk/debug/app-x86-debug.apk
 
 
