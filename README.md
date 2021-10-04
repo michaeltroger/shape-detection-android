@@ -25,9 +25,6 @@ So don't expect a perfect code please. In 2021 I updated the project to build wi
 
 <img src="/testimages/simpleshapes.png" alt="" width="600px"/>
 
-### Who do I talk to? ###
-* Repo owner and developer: android@michaeltroger.com
-
 ### Credits ###
 * The shape detection is based on Nash's shape detection https://github.com/bsdnoobz/opencv-code/blob/master/shape-detect.cpp His version is based on OpenCV 2 for the PC and usable for static images files.
 * The red color detection is based on Sol's OpenCV red circle detection. See https://github.com/sol-prog/OpenCV-red-circle-detection and https://solarianprogrammer.com/2015/05/08/detect-red-circles-image-using-opencv/
