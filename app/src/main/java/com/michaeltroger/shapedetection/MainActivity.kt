@@ -7,8 +7,6 @@ import android.widget.Toast
 import com.michaeltroger.shapedetection.views.OverlayView
 import android.app.ActivityManager
 import android.content.pm.PackageManager
-import org.opencv.android.BaseLoaderCallback
-import org.opencv.android.LoaderCallbackInterface
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
@@ -100,28 +98,6 @@ class MainActivity : ComponentActivity(), CvCameraViewListener2 {
      * approximated polygonal curve with specified precision
      */
     private var approxCurve: MatOfPoint2f? = null
-    private val mLoaderCallback: BaseLoaderCallback = object : BaseLoaderCallback(this) {
-        override fun onManagerConnected(status: Int) {
-            when (status) {
-                SUCCESS -> {
-                    Log.i(TAG, "OpenCV loaded successfully")
-                    bw = Mat()
-                    hsv = Mat()
-                    lowerRedRange = Mat()
-                    upperRedRange = Mat()
-                    downscaled = Mat()
-                    upscaled = Mat()
-                    contourImage = Mat()
-                    hierarchyOutputVector = Mat()
-                    approxCurve = MatOfPoint2f()
-                    mOpenCvCameraView!!.enableView()
-                }
-                else -> {
-                    super.onManagerConnected(status)
-                }
-            }
-        }
-    }
 
     private val requestPermissionLauncher =
             registerForActivityResult(ActivityResultContracts.RequestPermission()
@@ -161,6 +137,7 @@ class MainActivity : ComponentActivity(), CvCameraViewListener2 {
         }
         mOpenCvCameraView!!.visibility = SurfaceView.VISIBLE
         mOpenCvCameraView!!.setCvCameraViewListener(this)
+        mOpenCvCameraView!!.setCameraPermissionGranted()
         mi = ActivityManager.MemoryInfo()
         activityManager = getSystemService(ACTIVITY_SERVICE) as ActivityManager
     }
@@ -174,13 +151,19 @@ class MainActivity : ComponentActivity(), CvCameraViewListener2 {
     public override fun onResume() {
         super.onResume()
 
-        if (!OpenCVLoader.initDebug()) {
-            Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for initialization")
-            OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, this, mLoaderCallback)
-        } else {
-            Log.d(TAG, "OpenCV library found inside package. Using it!")
-            mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS)
-        }
+        OpenCVLoader.initLocal()
+
+        Log.i(TAG, "OpenCV loaded successfully")
+        bw = Mat()
+        hsv = Mat()
+        lowerRedRange = Mat()
+        upperRedRange = Mat()
+        downscaled = Mat()
+        upscaled = Mat()
+        contourImage = Mat()
+        hierarchyOutputVector = Mat()
+        approxCurve = MatOfPoint2f()
+        mOpenCvCameraView!!.enableView()
     }
 
     public override fun onDestroy() {
@@ -338,7 +321,7 @@ class MainActivity : ComponentActivity(), CvCameraViewListener2 {
      * @param contour the contour to which the label should apply
      */
     private fun setLabel(im: Mat, label: String, contour: MatOfPoint) {
-        val fontface = Core.FONT_HERSHEY_SIMPLEX
+        val fontface = Imgproc.FONT_HERSHEY_SIMPLEX
         val scale = 3.0 //0.4;
         val thickness = 3 //1;
         val baseline = IntArray(1)
