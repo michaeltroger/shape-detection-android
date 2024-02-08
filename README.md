@@ -4,7 +4,7 @@
 Attention: This app was created in 2016. I was a beginner to Android development and Computer Vision back then.
 So don't expect a perfect code please. Over the years I updated the dependencies and converted it to Kotlin, while the business logic remained unchanged.
 
-Note: Originally I targeted min SDK 15 (Android 14), more architectures ("mips", "mips64", "armeabi") and OpenCV 3 with this project. Nowadays the repo uses newer versions. If you need to support older devices, then you can look back in the repo's Git history (app version 1.2)
+Note: Originally I targeted min SDK 15 (Android 4), more architectures ("mips", "mips64", "armeabi") and OpenCV 3 with this project. Nowadays the repo uses newer versions. If you need to support older devices, then you can look back in the repo's Git history (app version 1.2)
 
 <img src="/screenshots/demo.gif" alt="Augmented Reality shape detection" width="800px"/>
 
