@@ -1,4 +1,4 @@
-# Augmented Reality simple shape detector using OpenCV 4
+# Augmented Reality Simple Shape Detector using OpenCV 4
 [![Android CI](https://github.com/michaeltroger/shape-detection-android/actions/workflows/android.yml/badge.svg)](https://github.com/michaeltroger/shape-detection-android/actions/workflows/android.yml)
 
 Attention: This app was created in 2016. I was a beginner to Android development and Computer Vision back then.
