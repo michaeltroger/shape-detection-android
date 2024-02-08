@@ -6,4 +6,3 @@ dependencyResolutionManagement {
     }
 }
 include ':app'
-include ':opencv-3-4-15'
