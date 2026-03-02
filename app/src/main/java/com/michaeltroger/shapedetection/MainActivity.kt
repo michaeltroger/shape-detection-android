@@ -23,6 +23,7 @@ import androidx.core.content.ContextCompat
 import org.opencv.core.*
 import java.util.*
 import kotlin.math.abs
+import kotlin.math.sqrt
 
 /**
  * the main activity - entry to the application
@@ -427,8 +428,8 @@ class MainActivity : ComponentActivity(), CvCameraViewListener2 {
             val dx2 = pt2.x - pt0.x
             val dy2 = pt2.y - pt0.y
             return ((dx1 * dx2 + dy1 * dy2)
-                    / Math.sqrt(
-                    (dx1 * dx1 + dy1 * dy1) * (dx2 * dx2 + dy2 * dy2) + 1e-10
+                    / sqrt(
+                (dx1 * dx1 + dy1 * dy1) * (dx2 * dx2 + dy2 * dy2) + 1e-10
             ))
         }
     }
