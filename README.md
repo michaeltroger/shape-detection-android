@@ -15,7 +15,7 @@ Note: Originally I targeted min SDK 15 (Android 4), more architectures ("mips", 
 
 ### How do I get set up? ###
 
-* IDE: Android Studio (tested with 2023.3.1)
+* IDE: Android Studio
 * Android SDK
 * Images location: res/drawable | Sounds location: res/raw
 * Mode (label/image): Flag in MainActivity (default labels)
